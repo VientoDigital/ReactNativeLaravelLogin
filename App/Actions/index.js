@@ -1,4 +1,5 @@
 import { LOGIN_URL } from '../Config/URLs'
+import { GRANT_TYPE, CLIENT_SECRET, CLIENT_ID } from '../Config/Settings'
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE} from './Types'
 
 export function loginFetch(username,password) {
@@ -11,9 +12,9 @@ export function loginFetch(username,password) {
                 'Content-Type' : 'application/json'
             },
             body: JSON.stringify({
-                grant_type:'password',
-                client_id:1,
-                client_secret:'V0PqkYiGdcURa5NAJvLnKqfkhgWmJz7k8teweiIe',
+                grant_type: GRANT_TYPE,
+                client_id: CLIENT_ID,
+                client_secret: CLIENT_SECRET,
                 username:username,
                 password:password,
                 scope:''
