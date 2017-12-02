@@ -256,7 +256,7 @@ If you have PHP installed locally and you would like to use PHP's built-in devel
 
 ### [Authentication Introduction](https://laravel.com/docs/5.5/authentication#introduction)
 
-Want to get started fast? Just run `php artisan make:auth` and php `artisan migrate` in a fresh Laravel application. Then, navigate your browser to http://localhost:8000/register or any other URL that is assigned to your application. These two commands will take care of scaffolding your entire authentication system!
+Want to get started fast? Just run `php artisan make:auth` and `php artisan migrate` in a fresh Laravel application. Then, navigate your browser to http://localhost:8000/register or any other URL that is assigned to your application. These two commands will take care of scaffolding your entire authentication system!
 
 ### [API Authentication](https://laravel.com/docs/5.5/passport#installation)
 
@@ -289,7 +289,7 @@ class User extends Authenticatable
 }
 ```
 
-Next, you should call the Passport::routes method within the boot method of your  AuthServiceProvider. This method will register the routes necessary to issue access tokens and revoke access tokens, clients, and personal access tokens:
+Next, you should call the `Passport::routes` method within the boot method of your  `AuthServiceProvider`. This method will register the routes necessary to issue access tokens and revoke access tokens, clients, and personal access tokens:
 
 ```
 <?php
@@ -325,7 +325,7 @@ class AuthServiceProvider extends ServiceProvider
 }
 ```
 
-Finally, in your config/auth.php configuration file, you should set the driver option of the api authentication guard to passport. This will instruct your application to use Passport's TokenGuard when authenticating incoming API requests:
+Finally, in your `config/auth.php` configuration file, you should set the driver option of the api authentication guard to passport. This will instruct your application to use Passport's TokenGuard when authenticating incoming API requests:
 
 ```
 'guards' => [

@@ -1,17 +1,15 @@
 import { fromJS } from 'immutable'
 
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from '../Actions/Types'
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST } from '../Actions/Types'
 
 const INIT_STATE = {
     id:-1,
-    username:'',
-    password:'',
-    firstname:'',
-    lastname:'',
+    name:'',
     email:'',
+    password:'',
     access_token:'',
     refresh_token:'',
-    expires_in:'',
+    expires:null,
     loading:false,
     error:false
 }
@@ -20,30 +18,31 @@ const auth = (state = fromJS(INIT_STATE), action) => {
     switch(action.type) {
         case LOGIN_REQUEST:
             return state.merge({
-                username:action.payload.username, 
+                email:action.payload.email,
                 password:action.payload.password,
+                created_at:action.payload.created_at,
+                updated_at:action.payload.updated_at,
                 loading: true,
                 error: false
             })
         break
         case LOGIN_SUCCESS:
-            console.log(action.payload)
+            console.log('payload',action.payload)
             return state.merge({
-                access_token:action.payload.json.access_token,
-                refresh_token: action.payload.json.refresh_token,
+                access_token:action.payload.response.access_token,
+                refresh_token:action.payload.response.refresh_token,
+                expires:action.payload.response.expires,
                 password:'',
                 loading: false,
                 error: false
             })
         break   
         case LOGIN_FAILURE:
-            return state.merge({
-                access_token:'',
-                refresh_token:'',
-                password:'',
-                error: true
-            })
+            return state.merge(INIT_STATE).merge({error:true})
         break
+        case LOGOUT_REQUEST:
+            return state.merge(INIT_STATE)
+        break;
         default:
             return state
     }
