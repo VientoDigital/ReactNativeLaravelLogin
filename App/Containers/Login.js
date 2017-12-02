@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Login from '../Components/LoginScreen'
-import {loginFetch, logout} from '../Actions'
+import {loginFetch, logout, userFetch} from '../Actions'
 
 const mapStateToProps = (state) => {
     // console.log(state.auth)
@@ -14,6 +14,9 @@ const mapDispatchToProps = (dispatch,props) => {
         },
         onLogout: () => {
             dispatch(logout())
+        },
+        onUser: (auth) => {
+            dispatch(userFetch(auth))
         }
 
     }

@@ -1,6 +1,10 @@
 import { fromJS } from 'immutable'
 
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST } from '../Actions/Types'
+import { 
+    LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, 
+    LOGOUT_REQUEST,
+    USER_REQUEST, USER_SUCCESS, USER_FAILURE
+} from '../Actions/Types'
 
 const INIT_STATE = {
     id:-1,
@@ -39,6 +43,15 @@ const auth = (state = fromJS(INIT_STATE), action) => {
         break   
         case LOGIN_FAILURE:
             return state.merge(INIT_STATE).merge({error:true})
+        break
+        case USER_REQUEST:
+            return state.merge({loading:true,error:false})
+        break;
+        case USER_SUCCESS:
+            return state.merge(action.payload.response).merge({loadging:false,error:false})
+        break;
+        case USER_FAILURE:
+            return state.merge({loading:false,error:true})
         break
         case LOGOUT_REQUEST:
             return state.merge(INIT_STATE)

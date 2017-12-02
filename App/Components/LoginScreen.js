@@ -8,7 +8,7 @@ class LoginScreen extends Component {
         super(props)
     }
     showLogin(props){
-        let { onLogin, onLogout, handleSubmit, auth } = props
+        let { onLogin, onLogout, onUser, handleSubmit, auth } = props
         if(auth.access_token === '') {
             return (
             <View style={styles.container}>
@@ -27,6 +27,8 @@ class LoginScreen extends Component {
             return (
                 <View style={styles.container}>
                     <Text>{auth.email}</Text>
+                    <Button title="My Info" color= "#236CF5" onPress={()=>onUser(auth)}/>
+                    <Text style={{fontWeight:'bold'}}>{auth.name}</Text>
                     <Button title="Logout" color= "#236CF5" onPress={()=>onLogout()}/>
                 </View>
                 )

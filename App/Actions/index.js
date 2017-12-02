@@ -1,9 +1,58 @@
-import { LOGIN_URL } from '../Config/URLs'
+import { LOGIN_URL, USER_URL } from '../Config/URLs'
 import { OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRECT } from '../Config/Settings'
-import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST} from './Types'
+import {
+    LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, 
+    LOGOUT_REQUEST,
+    USER_REQUEST, USER_SUCCESS, USER_FAILURE
+} from './Types'
+
+
+export function userFetch(auth) {
+    return (dispatch) => {
+        console.log('auth',auth)
+        dispatch(userRequest(auth))
+        return fetch(USER_URL,{
+            method:'GET',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Accept' :'application/json',
+                'Authorization' : 'Bearer '+auth.access_token
+            }
+        })
+        .then(response => response.json())
+        .then(json => {
+            console.log('JSON',json)
+            if(json.hasOwnProperty('error'))
+                dispatch(userFailure(auth,json.message))
+            else 
+                dispatch(userSuccess(auth,json))
+        })
+        .catch((error) => {
+            console.log('ERROR',error)
+            dispatch(userFailure(auth,error))
+        })
+    }
+}
+export function userRequest(auth) {
+    return {
+        type:USER_REQUEST,
+        payload: auth
+    }
+}
+export function userSuccess(auth, response){
+    return {
+        type:USER_SUCCESS,
+        payload: { response }
+    }
+}
+export function userFailure(auth, error){
+    return {
+        type:USER_FAILURE,
+        payload: { auth, error}
+    }
+}
 
 export function loginFetch(email,password) {
-    console.log(LOGIN_URL)
     return (dispatch) => {
         dispatch(loginRequest(email,password))
         return fetch(LOGIN_URL,{
