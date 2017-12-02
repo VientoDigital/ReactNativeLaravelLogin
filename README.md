@@ -35,8 +35,8 @@ Below you'll find information about performing common tasks. The most recent ver
 
 ### ReactNativeLaravelLogin App
 * [Configuration](#configuration)
-	* [URLs](#urls)
-	* [Settings](#settings)	
+	* [URLs.js](#urls)
+	* [Settings.js](#settings)	
 
 
 # React Native Specific
@@ -354,18 +354,18 @@ Before your application can issue tokens via the password grant, you will need t
 
 ## ReactNativeLaravelLogin App
 
-The App/Config folder contains getting started configuration needed.
+The `App/Config` folder contains getting started configuration needed.
 
 ### Configuration
 
-#### URLs
+#### URLs.js
 
 ```
 const BASE_URL = 'http://localhost:8000'
 export const LOGIN_URL = BASE_URL + '/oauth/token'
 
 ```
-#### Settings
+#### Settings.js
 
 
 ```
