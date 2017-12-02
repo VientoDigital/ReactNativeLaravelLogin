@@ -11,7 +11,7 @@ import Root from './App/Root'
 
 export default class App extends React.Component {
   componentDidMount(){
-    persistStore(store, {storage:AsyncStorage, transforms: [immutableTransform()],whitelist:['auth']} ).purge()
+    persistStore(store, {storage:AsyncStorage, transforms: [immutableTransform()],whitelist:['auth']} )
   }
   render() {
     return (
