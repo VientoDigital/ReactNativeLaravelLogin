@@ -373,4 +373,4 @@ export const OAUTH_CLIENT_ID = **YOUR_ID**
 export const OAUTH_CLIENT_SECRECT = '**YOUR_SECRET_KEY**'
 ```
 
-Thanks it! Try your App
+**That's it! Try your App**
