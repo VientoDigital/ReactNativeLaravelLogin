@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
 ## Table of Contents
-
+### [React Native Specific](#react-native-specific)
 * [Updating to New Releases](#updating-to-new-releases)
 * [Available Scripts](#available-scripts)
   * [npm start](#npm-start)
@@ -26,6 +26,21 @@ Below you'll find information about performing common tasks. The most recent ver
   * [Networking](#networking)
   * [iOS Simulator won't open](#ios-simulator-wont-open)
   * [QR Code does not scan](#qr-code-does-not-scan)
+
+### [Laravel 5.3+](#laravel-5.3+)
+* [Install Laravel](#install-laravel)
+* [Authentication Introduction](#authentication-introduction)
+* [API Authentication](#api-authentication)
+	* [Password Grant Tokens](#password-grant-tokens) 
+
+### [ReactNativeLaravelLogin App](#reactnativelaravellogin-app)
+* [Configuration](#configuration)
+	* [URLs](#urls)
+	* [Settings](#settings)	
+
+### Configuration
+
+# React Native Specific
 
 ## Updating to New Releases
 
@@ -218,3 +233,145 @@ There are a few steps you may want to take to troubleshoot these kinds of errors
 If you're not able to scan the QR code, make sure your phone's camera is focusing correctly, and also make sure that the contrast on the two colors in your terminal is high enough. For example, WebStorm's default themes may [not have enough contrast](https://github.com/react-community/create-react-native-app/issues/49) for terminal QR codes to be scannable with the system barcode scanners that the Expo app uses.
 
 If this causes problems for you, you may want to try changing your terminal's color theme to have more contrast, or running Create React Native App from a different terminal. You can also manually enter the URL printed by the packager script in the Expo app's search bar to load it manually.
+
+## Laravel 5.3+ 
+
+Laravel - The PHP Framework For Web Artisans 
+These are extracts from Laravel Site Documentation.
+
+
+### [Install Laravel](https://laravel.com/docs/5.5#installing-laravel)
+
+
+Laravel utilizes [Composer](https://getcomposer.org/) to manage its dependencies. So, before using Laravel, make sure you have Composer installed on your machine.
+
+**Via Composer Create-Project**
+
+`composer create-project --prefer-dist laravel/laravel blog`
+
+**Run your local Development Server**
+
+If you have PHP installed locally and you would like to use PHP's built-in development server to serve your application, you may use the serve Artisan command. This command will start a development server at http://localhost:8000
+
+`php artisan serve`
+
+### [Authentication Introduction](https://laravel.com/docs/5.5/authentication#introduction)
+
+Want to get started fast? Just run php artisan make:auth and php artisan migrate in a fresh Laravel application. Then, navigate your browser to http://your-app.dev/register or any other URL that is assigned to your application. These two commands will take care of scaffolding your entire authentication system!
+
+### [API Authentication](https://laravel.com/docs/5.5/passport#installation)
+
+To get started, install Passport via the Composer package manager:
+
+`composer require laravel/passport`
+
+The Passport service provider registers its own database migration directory with the framework, so you should migrate your database after registering the provider. The Passport migrations will create the tables your application needs to store clients and access tokens:
+
+`php artisan migrate`
+
+Next, you should run the passport:install command. This command will create the encryption keys needed to generate secure access tokens. In addition, the command will create "personal access" and "password grant" clients which will be used to generate access tokens:
+
+`php artisan passport:install`
+
+After running this command, add the `Laravel\Passport\HasApiTokens` trait to your `App\User` model. This trait will provide a few helper methods to your model which allow you to inspect the authenticated user's token and scopes:
+
+```
+<?php
+
+namespace App;
+
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable
+{
+    use HasApiTokens, Notifiable;
+}
+```
+
+Next, you should call the Passport::routes method within the boot method of your  AuthServiceProvider. This method will register the routes necessary to issue access tokens and revoke access tokens, clients, and personal access tokens:
+
+```
+<?php
+
+namespace App\Providers;
+
+use Laravel\Passport\Passport;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+
+class AuthServiceProvider extends ServiceProvider
+{
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $policies = [
+        'App\Model' => 'App\Policies\ModelPolicy',
+    ];
+
+    /**
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->registerPolicies();
+
+        Passport::routes();
+    }
+}
+```
+
+Finally, in your config/auth.php configuration file, you should set the driver option of the api authentication guard to passport. This will instruct your application to use Passport's TokenGuard when authenticating incoming API requests:
+
+```
+'guards' => [
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
+    ],
+
+    'api' => [
+        'driver' => 'passport',
+        'provider' => 'users',
+    ],
+],
+```
+
+
+### Password Grant Tokens
+
+The OAuth2 password grant allows your other first-party clients, such as a mobile application, to obtain an access token using an e-mail address / username and password. This allows you to issue access tokens securely to your first-party clients without requiring your users to go through the entire OAuth2 authorization code redirect flow.
+
+
+Creating A Password Grant Client
+Before your application can issue tokens via the password grant, you will need to create a password grant client. You may do this using the `passport:client `command with the `--password` option. If you have already run the `passport:install` command, you do not need to run this command:
+
+`php artisan passport:client --password`
+
+## ReactNativeLaravelLogin App
+
+The App/Config folder contains getting started configuration needed.
+
+### Configuration
+
+**URLs**
+
+```
+const BASE_URL = 'http://localhost:8000'
+export const LOGIN_URL = BASE_URL + '/oauth/token'
+
+```
+**Settings**
+
+
+```
+export const OAUTH_CLIENT_ID = **YOUR_ID**
+export const OAUTH_CLIENT_SECRECT = '**YOUR_SECRET_KEY**'
+```
+
+Thanks it! Try your App
