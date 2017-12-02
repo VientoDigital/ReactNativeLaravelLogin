@@ -4,10 +4,9 @@ import Login from './Containers/Login'
 
 export default class Root extends Component {
     render(){
-        const handleSubmit = (values) => { console.log('-- VALUES --',values) }
         return(
             <View style={styles.container}>
-                <Login onSubmit={handleSubmit}/>
+                <Login />
             </View>
             )
     }

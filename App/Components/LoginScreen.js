@@ -9,7 +9,7 @@ class LoginScreen extends Component {
         // console.log('LOGIN_SCREEN_PROPS',props)
     }
     render(){
-        let { onLogin, username, password, handleSubmit } = this.props
+        let { onLogin, auth } = this.props
         return (
             <View style={styles.container}>
                 <Field style={styles.input} autoCapitalize="none" placeholder="Username" component={TInput} name={'username'} />

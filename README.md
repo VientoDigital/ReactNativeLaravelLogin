@@ -256,7 +256,7 @@ If you have PHP installed locally and you would like to use PHP's built-in devel
 
 ### [Authentication Introduction](https://laravel.com/docs/5.5/authentication#introduction)
 
-Want to get started fast? Just run php artisan make:auth and php artisan migrate in a fresh Laravel application. Then, navigate your browser to http://your-app.dev/register or any other URL that is assigned to your application. These two commands will take care of scaffolding your entire authentication system!
+Want to get started fast? Just run `php artisan make:auth` and php artisan migrate` in a fresh Laravel application. Then, navigate your browser to http://your-app.dev/register or any other URL that is assigned to your application. These two commands will take care of scaffolding your entire authentication system!
 
 ### [API Authentication](https://laravel.com/docs/5.5/passport#installation)
 

@@ -4,7 +4,7 @@ import {loginFetch} from '../Actions'
 
 const mapStateToProps = (state) => {
     // console.log(state.auth)
-    return state.auth.toJS()
+    return {auth:state.auth.toJS()}
 }
 
 const mapDispatchToProps = (dispatch,props) => {
