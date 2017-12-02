@@ -38,7 +38,6 @@ Below you'll find information about performing common tasks. The most recent ver
 	* [URLs](#urls)
 	* [Settings](#settings)	
 
-### Configuration
 
 # React Native Specific
 
@@ -359,14 +358,14 @@ The App/Config folder contains getting started configuration needed.
 
 ### Configuration
 
-**URLs**
+#### URLs
 
 ```
 const BASE_URL = 'http://localhost:8000'
 export const LOGIN_URL = BASE_URL + '/oauth/token'
 
 ```
-**Settings**
+#### Settings
 
 
 ```
