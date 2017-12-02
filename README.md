@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
 ## Table of Contents
-### [React Native Specific](#react-native-specific)
+### React Native Specific 
 * [Updating to New Releases](#updating-to-new-releases)
 * [Available Scripts](#available-scripts)
   * [npm start](#npm-start)
@@ -27,13 +27,13 @@ Below you'll find information about performing common tasks. The most recent ver
   * [iOS Simulator won't open](#ios-simulator-wont-open)
   * [QR Code does not scan](#qr-code-does-not-scan)
 
-### [Laravel 5.3+](#laravel-5.3+)
+### Laravel 5.3+
 * [Install Laravel](#install-laravel)
 * [Authentication Introduction](#authentication-introduction)
 * [API Authentication](#api-authentication)
 	* [Password Grant Tokens](#password-grant-tokens) 
 
-### [ReactNativeLaravelLogin App](#reactnativelaravellogin-app)
+### ReactNativeLaravelLogin App
 * [Configuration](#configuration)
 	* [URLs](#urls)
 	* [Settings](#settings)	
