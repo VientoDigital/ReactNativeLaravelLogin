@@ -354,9 +354,16 @@ Before your application can issue tokens via the password grant, you will need t
 
 ## ReactNativeLaravelLogin App
 
-The `App/Config` folder contains getting started configuration needed.
+### What you get out of the box:
+
+1. React Native
+2. React Redux
+2. Redux Persist
+3. Login to Laravel API Authentication
 
 ### Configuration
+
+The `App/Config` folder contains getting started configuration needed.
 
 #### URLs.js
 
