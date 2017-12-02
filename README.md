@@ -35,8 +35,8 @@ Below you'll find information about performing common tasks. The most recent ver
 
 ### ReactNativeLaravelLogin App
 * [Configuration](#configuration)
-	* [URLs.js](#urls-js)
-	* [Settings.js](#settings-js)	
+	* URLs.js
+	* Settings.js
 
 
 # React Native Specific
