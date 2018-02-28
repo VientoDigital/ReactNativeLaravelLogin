@@ -6,11 +6,7 @@ import createActionBuffer from 'redux-action-buffer'
 import {REHYDRATE} from 'redux-persist/constants'
 import reducers from './Reducers'
 
-
-
-const logger = createLogger()
-
-let middlewares = [thunk,createActionBuffer(REHYDRATE)]
+let middlewares = [thunk, createActionBuffer(REHYDRATE)]
 if (__DEV__ === true) {
   middlewares.push(createLogger());
 }
@@ -18,7 +14,7 @@ if (__DEV__ === true) {
 const store = createStore(
   reducers,
   undefined,
-  compose(applyMiddleware(...middlewares ), autoRehydrate() ),
+  compose(applyMiddleware(...middlewares), autoRehydrate()),
 )
 
 export default store
