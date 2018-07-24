@@ -48,7 +48,7 @@ const auth = (state = fromJS(INIT_STATE), action) => {
             return state.merge({loading:true,error:false})
         break;
         case USER_SUCCESS:
-            return state.merge(action.payload.response).merge({loadging:false,error:false})
+            return state.merge(action.payload.response).merge({loading:false,error:false})
         break;
         case USER_FAILURE:
             return state.merge({loading:false,error:true})
